@@ -1,66 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/1f42bf96bf.js" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/4fe1382028.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">    <link rel="stylesheet" href="css/style.css">
     <title>Desafio ESP</title>
 </head>
 <body>
-      <!-- --------------------MODAL NEW POST-------------------- -->
-      <div class="modal fade" id="nuevoPost" tabindex="-1" aria-hidden="true">
+<!--**********************************************************************************************************************************************************************-->
+    <!--***********AQUI INICIA EL NAV***************************************************************************************************-->
+    <!--**********************************************************************************************************************************************************************-->
+    <div class="modal fade" id="writePost" tabindex="-1" aria-labelledby="uploadPostLabel" aria-hidden="true">
         <div class="modal-dialog">
+          <div class="modal-content">
             <div class="modal-body">
-              <!-- Formulario-->
               <form action="">
                 <div class="form-group">
-                    <button type="button" class="btn btn-light">Add a Cover Image</button>
-                </div>
-                <form class="">
-                    <label for="">Post</label>
-                  <textarea input type="text" class="form-control " name="post"
-                    placeholder="Escribe un nuevo Post">
-                </form>
+                    <label for="">Cover</label>
+                    <input type="text" class="form-control" name="picUrl" id="coverImage" placeholder="Introduce la url de la portada que quieras usar">
+                  </div>
                 <div class="form-group">
-                  <label for="">Tags</label>
-                  <input type="text" class="form-control " name="tags"
-                    placeholder="Escribe tus tags">
+                  <label for="">Post </label>
+                  <input type="text" class="form-control" name="post" id="writePost" placeholder="Escribe el título de tu Post">
                 </div>
                 <div class="form-group">
                   <label for="">Imagen</label>
-                  <input type="text" class="form-control " name="imageURL"
-                    placholder="Introduce la url de la imagen que quieras usar">
+                  <input type="text" class="form-control" name="picUrl" id="newImage" placeholder="Introduce la url de la imagen que quieras usar">
                 </div>
                 <div class="form-group">
-                    <label for="">Post Content</label>
-                    <input type="text" class="form-control " name="content"
-                      placeholder="Escribe el contenido de tu post">
+                    <label for="">Tags</label>
+                    <input type="text" class="form-control " name="tags" id="newTags"
+                      placeholder="Escribe tus tags">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Post </label>
+                    <textarea  class="form-control" name="text" id="contentPost" placeholder="Escribe el contenido de tu Post"></textarea>
                   </div>
               </form>
             </div>
             <div class="modal-footer">
-              <p class="font-weight-bold bg-danger text-white px-3 text-block"></p>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Publish</button>
-              <button type="button" class="btn btn-primary" id="newPost">Guardar</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-primary" id="savePost">Guardar post</button>
             </div>
           </div>
         </div>
       </div>
-
-<!-- AQUI VA EL NAV LINEA 12 *******************************************-->
-    <nav>
-        <p>NAV</p>
-    </nav>
-<!--**********************************************************************************************************************************************************************-->
-    <!--***********AQUI INICIA EL NAV***************************************************************************************************-->
-    <!--**********************************************************************************************************************************************************************-->
+    
     <nav class="navbar fixed-top navbar-light bg-light shadow-sm p-1 mb-5 bg-white rounded">
         <div class="container nav-top">
             <a class="navbar-brand" href="#">
@@ -71,7 +61,7 @@
                 <input class="form-control w-100" type="search" placeholder="Search..." aria-label="Search">
             </form>
             <button type="button"
-                class="btn btn-primary shadow-none font-weight-bold mx-2 text-nowrap d-none d-md-block ml-lg-5" id="nwePost" data-toggle="modal" data-target="#nuevoPost">Write a
+                class="btn btn-primary shadow-none font-weight-bold mx-2 text-nowrap d-none d-md-block ml-lg-5" id="newPost" data-toggle="modal" data-dismiss="modal" data-target="#writePost">Write a
                 post</button>
 
             <a class="navbar-brand rounded-circle top-icons p-1 d-flex align-items-center" href="#">
@@ -281,6 +271,9 @@
                                 </div>
                             </div>
                         </ul>
+
+                        <div  id="fillThePost"></div>
+
                         <div class="">
                             <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--Vf4r3_YP--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/mh92nw6xx9rogqmdj8ts.png"
                                 class="card-img-top" alt="icono-profile">
