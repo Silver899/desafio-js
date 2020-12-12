@@ -85,7 +85,7 @@ const getNewDatos = dataToGet => {
                                             </div>
                                             <div class="final-card">
                                                 <p class="small">15 min read</p>
-                                                <button type="button" class="btn btn-secondary">Save</button>
+                                                <button  data-id-post="${key}" type="button" class="btn btn-secondary reading-list-button">Save</button>
                                             </div>
                                         </div>
                                     </div>
@@ -96,12 +96,46 @@ const getNewDatos = dataToGet => {
             $("#fillThePost").append(newCard) 
             contador++
         }
+        eventSaveButton()
     }
 
-    getNewDatos()
+   /* getNewDatos()
 
+    let newPostEntry = {
+        featured:true
+    }
+    
+    let readLaterPosts = []
+    $("input, textarea, select").change( event => {
+        console.log(event.target)
+        let property = event.target.name
+        let value = event.target.type === "button" 
+                    ? !readPostEntry.featured 
+                    : event.target.value
+        newPostEntry[property] = value
+        console.log(newPostEntry)
+    }) */ 
 
+let toReadLaterList = [] 
 
+const eventSaveButton = () => { 
+    $(".reading-list-button").click(event=>{ 
+     console.log(event.target) 
+     $(event.target).text("Saved")
+     let readlaterIdPost = $(event.target).data("id-post") 
+     let isInReadLaterList = toReadLaterList.includes(readlaterIdPost)
+     toReadLaterList = isInReadLaterList 
+                       ? toReadLaterList.filter( (id)=>{ return id !== readlaterIdPost} )
+                       : [...toReadLaterList, readlaterIdPost] 
+    if (isInReadLaterList) { $(event.target).text("Save")
 
+    }
+     console.log(readlaterIdPost)
+     console.log(toReadLaterList)
+    }) 
 
+}
 
+const now = new Date()
+const lastWeek = new Date().getTime(2020, 12,)
+console.log(now)
