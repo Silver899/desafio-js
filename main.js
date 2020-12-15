@@ -138,8 +138,8 @@ const getNewDatos = dataToGet => {
         console.log("key", key)
         let { newCover,titlePost,tags,content } = dataToGet[key]
         console.log(dataToGet[key])
-        let imageHtml = `
-        <.img-fluid. max-width: 100%;  height: auto; src="${newCover}" class="card-img-top" alt="icono-profile">
+        let imageHtml =  `
+        <img src="${newCover}" class="card-img-top" alt="icono-profile">
         `   
         let newCard = `
             <div class="">
