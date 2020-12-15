@@ -138,7 +138,7 @@ const getNewDatos = dataToGet => {
         console.log("key", key)
         let { newCover,titlePost,tags,content } = dataToGet[key]
         console.log(dataToGet[key])
-        let imageHtml =  `
+        let imageHtml = `
         <img src="${newCover}" class="card-img-top" alt="icono-profile">
         `   
         let newCard = `
