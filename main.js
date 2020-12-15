@@ -1,22 +1,22 @@
 let posts = {}
  $.ajax({
      url:"https://desafio-js-default-rtdb.firebaseio.com/.json",
-     method:"GET", //Recibe datos del servidor
+     method:"GET", 
      success: (response)=>{
-         console.log("response", response) //Que es lo que nos manda el servidor como respuesta
+         console.log("response", response) 
          posts = response
      }
  })
-  let filteredPost = {} //variable que guarda los resultados
-   const filterByTitle = (searchWord, data)=>{ //nombre del elemento y donde quiero guardarlo
+  let filteredPost = {} 
+   const filterByTitle = (searchWord, data)=>{ 
        filteredPost = {}
-    for(post in data){  // Itera dentro de cada objeto
+    for(post in data){  
         let title = data[post].titlePost
         console.log(title)
         console.log(title.toLowerCase().includes(searchWord.toLowerCase()))
         let containsSearch = title.toLowerCase().includes(searchWord.toLowerCase())
       if (containsSearch == true){
-          filteredPost[post] = data[post]     //aqui se guarda el post completo
+          filteredPost[post] = data[post]     
       }
     }
     console.log(filteredPost)
